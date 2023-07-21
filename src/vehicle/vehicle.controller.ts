@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { VehicleService } from './vehicle.service';
 import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { EquipmentCodeType, PlaceOfProductionType } from './entities/vehicle.entity';
 // import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 
 @Controller('vehicle')
@@ -20,10 +21,21 @@ export class VehicleController {
     return this.vehicleService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.vehicleService.findOne(+id);
+  @Get('equipment-codes')
+  findEquipmentCodes() {
+    return EquipmentCodeType;
   }
+
+  @Get('place-of-products')
+  findPlaceOfProducts() {
+    return PlaceOfProductionType;
+  }
+
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.vehicleService.findOne(+id);
+  // }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateVehicleDto: UpdateVehicleDto) {

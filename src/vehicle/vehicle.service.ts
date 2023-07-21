@@ -16,13 +16,14 @@ export class VehicleService {
     return await this.vehicleRepository.save(createVehicleDto);
   }
 
-  async findAll(): Promise<VehicleEntity[]> {
-    return await this.vehicleRepository.find();
+  async findAll(): Promise<string[]> {
+    const serials = await this.vehicleRepository.find();
+    return serials.map(item => `${item.version}${item.equipmentCode}${item.yearOfIssue}${item.serialNumber}${item.placeOfProduction}`)
   }
 
-  async findOne(id: number): Promise<VehicleEntity> {
-    return await this.vehicleRepository.findOne({where: {id}});
-  }
+  // async findOne(id: number): Promise<VehicleEntity> {
+  //   return await this.vehicleRepository.findOne({where: {id}});
+  // }
 
   // update(id: number, updateVehicleDto: UpdateVehicleDto) {
   //   return `This action updates a #${id} vehicle`;
